@@ -7,7 +7,7 @@ on:
 
 env:
   ACTIONS_STEP_DEBUG: true
-  DOCKER_IMAGE: ${{ vars.DOCKERHUB_USERNAME }}/nextjs-app:latest
+  DOCKER_IMAGE: ${{ vars.DOCKERHUB_USERNAME }}/next_admin:latest
 
 jobs:
   build:
