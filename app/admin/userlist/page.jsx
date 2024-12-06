@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import ToggleButton from "../property-list/ToggleButton";
 import axiosInstance from "@/redux/services/axiosInstance";
+import { SquareArrowDownRight, Trash2 } from "lucide-react"
 
 const page=()=>{
     const [users, setUser] = useState([]);

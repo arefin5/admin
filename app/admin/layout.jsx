@@ -1,6 +1,6 @@
 
 "use client";
-import Header from './Header';
+import Header from '@/components/Header/index';
 import Sidebar from './Sidebar';
 import { useState } from 'react';
 // import { useEffect } from 'react';
@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
   return (
     <>
     {/* Admin Header */}
-      {/* <Header /> */}
+      <Header />
 
       <div className="container ml-auto mr-auto flex z-10">
         {/* Admin Sidebar */}
