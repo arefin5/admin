@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
   return (
     <>
     {/* Admin Header */}
-      <Header />
+      {/* <Header /> */}
 
       <div className="container ml-auto mr-auto flex z-10">
         {/* Admin Sidebar */}

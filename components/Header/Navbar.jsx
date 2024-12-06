@@ -277,8 +277,17 @@ export default function Navbar() {
                 {
                     loggedIn &&
                     <li>
-                        {/* <ul className={`md:grid md:absolute right-4 bg-white top-12 md:shadow-md md:rounded-md ${!subMenuOpen && 'md:hidden'}`} >
-                            <li className="w-max min-w-full py-4 px-10 font-medium text-neutral-500 cursor-pointer hover:shadow hover:shadow-neutral-600-inner hover:font-bold md:hover:shadow-none">
+                    {/* <li className="w-max min-w-full py-4 px-10 font-medium text-neutral-500 cursor-pointer hover:shadow hover:shadow-neutral-600-inner hover:font-bold md:hover:shadow-none">
+                                <span clas
+                                sName="inline-block max-w-full text-center md:hover:scale-110" onClick={LogOut}>Log out</span>
+                            </li> */}
+                            <Link href="/admin">
+                                <li className="w-max min-w-full py-4 px-10 font-medium text-neutral-500 cursor-pointer hover:shadow hover:shadow-neutral-600-inner hover:font-bold md:hover:shadow-none">
+                                    <span className="inline-block max-w-full text-center md:hover:scale-110">Admin</span>
+                                </li>
+                                </Link>
+                        <ul className={`md:grid md:absolute right-4 bg-white top-12 md:shadow-md md:rounded-md ${!subMenuOpen && 'md:hidden'}`} >
+                            {/* <li className="w-max min-w-full py-4 px-10 font-medium text-neutral-500 cursor-pointer hover:shadow hover:shadow-neutral-600-inner hover:font-bold md:hover:shadow-none">
                                 <span className="inline-block max-w-full text-center md:hover:scale-110">Message</span>
                             </li>
                             <Link href="/user/profile">
@@ -302,7 +311,16 @@ export default function Navbar() {
                             <li className="w-max min-w-full py-4 px-10 font-medium text-neutral-500 cursor-pointer hover:shadow hover:shadow-neutral-600-inner hover:font-bold md:hover:shadow-none">
                                 <span className="inline-block max-w-full text-center md:hover:scale-110" onClick={LogOut}>Log out</span>
                             </li>
-                        </ul> */}
+                             */}
+                             <Link href="/admin">
+                                <li className="w-max min-w-full py-4 px-10 font-medium text-neutral-500 cursor-pointer hover:shadow hover:shadow-neutral-600-inner hover:font-bold md:hover:shadow-none">
+                                    <span className="inline-block max-w-full text-center md:hover:scale-110">Admin</span>
+                                </li>
+                                </Link>
+                            <li className="w-max min-w-full py-4 px-10 font-medium text-neutral-500 cursor-pointer hover:shadow hover:shadow-neutral-600-inner hover:font-bold md:hover:shadow-none">
+                                <span className="inline-block max-w-full text-center md:hover:scale-110" onClick={LogOut}>Log out</span>
+                            </li>
+                        </ul>
                     </li>
                 }
             </ul>
