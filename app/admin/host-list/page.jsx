@@ -1,6 +1,8 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import ToggleButton from "../property-list/ToggleButton";
+import axiosInstance from "@/redux/services/axiosInstance";
 
 const page=()=>{
     const [users, setUser] = useState([]);

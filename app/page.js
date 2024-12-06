@@ -18,14 +18,14 @@ export default function Home() {
   return (
     <main >
       <Header/>
-      <Hero/>
+      {/* <Hero/> */}
       {/* <TopRatedListing/> */}
-      <PropertyGallery/>
-      <Banner/>
-      <PropertyGallery/>
-      <Banner/>
-      <Blogs/>
-      <GuideInformation/>
+      {/* <PropertyGallery/> */}
+      {/* <Banner/> */}
+      {/* <PropertyGallery/> */}
+      {/* <Banner/> */}
+      {/* <Blogs/> */}
+      {/* <GuideInformation/> */}
       
       <Footer/>
     </main>
