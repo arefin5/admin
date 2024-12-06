@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
+import Image from "next/image"
 
 const ChatComponentHooks = ({ userId, otherUserId, socket, loadingMessages ,setLoadingMessages}) => {
     console.log("start calling apiss",userId,otherUserId)
@@ -20,15 +21,28 @@ const ChatComponentHooks = ({ userId, otherUserId, socket, loadingMessages ,setL
     }, [userId, otherUserId, socket]);
     
     return (
-        <div>
+       
+
+            <div className="w-full flex items-start gap-4 max-w-md self-start">
+                       
+                    
             {loadingMessages ? (
                 <p>Loading messages...</p>
             ) : messages.length > 0 ? (
                 messages.map((msg, index) => (
-                    <div key={index}>
-                        <p><strong>Sender:</strong> {msg.sender}</p>
-                        <p><strong>Message:</strong> {msg.message}</p>
-                    </div>
+                    <>
+                    <div key={index} className="relative h-8 w-8 min-w-8 rounded-full overflow-hidden">
+                            <Image src="/dummy/sample-profile-photo.jpg"  fill/>
+                        </div>
+                        <div className="relative bg-white p-4 rounded-lg text-neutral-500 
+                        font-medium shadow-inner text-base">
+                            <p>{msg.sender}</p>
+                            <p><strong>Message:</strong> {msg.message}</p>
+                            <span className="absolute top-[calc(100%+4px)] text-sm">Sent 4:23pm</span>
+                        </div>
+                    </>
+
+                   
                 ))
             ) : (
                 <p>No messages to display.</p>

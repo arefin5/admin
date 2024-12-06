@@ -360,7 +360,9 @@ const fetchPropertyList = async () => {
   lists.map((property, index) => (
     <ul  key={property._id || index}  className='admin-property-list-table-item even:bg-white odd:bg-transparent marker-class'>
                             <li className='pl-6 text-secondary-400 hover:underline cursor-pointer'>{property.Postedby?.name || property.Postedby?.fname|| property.Postedby._id}</li>
-                            <li className='pl-6'>{property.propertyTitle} <span className='text-secondary-400 hover:underline cursor-pointer'>({property._id})</span></li>
+                            {/* <li className='pl-6'>{property.propertyTitle} <span className='text-secondary-400 hover:underline cursor-pointer'>({property._id})</span></li> */}
+                            <li className='pl-6'>{property.propertyTitle}</li>
+
                             <li className='pl-6 text-center'>{property.location?.district}</li>
                             <li className='pl-6 text-center'>23/13,230</li>
                             <li className='pl-6 text-center'>
