@@ -15,48 +15,48 @@ export default function Sidebar() {
   const [socket, setSocket] = useState(null);
   const [authenticatedUserId, setAuthenticatedUserId] = useState(null);
    
-  // useEffect(() => {
-  //   if (user?.fname && user?.lname) {
-  //     setName(`${user.fname} ${user.lname}`);
-  //   } else {
-  //     setName("");
-  //   }
-  // }, [user, token]);
+  useEffect(() => {
+    if (user?.fname && user?.lname) {
+      setName(`${user.fname} ${user.lname}`);
+    } else {
+      setName("");
+    }
+  }, [user, token]);
 
-  // useEffect(() => {
-  //   const socketInstance = io(SOCKET_URL, { transports: ['websocket'] });
-  //   setSocket(socketInstance);
+  useEffect(() => {
+    const socketInstance = io(SOCKET_URL, { transports: ['websocket'] });
+    setSocket(socketInstance);
   
-  //   socketInstance.emit('authenticate', token, (response) => {
-  //     if (response.status === 'failed') {
-  //       console.log('Authentication failed');
-  //       return;
-  //     }
+    socketInstance.emit('authenticate', token, (response) => {
+      if (response.status === 'failed') {
+        console.log('Authentication failed');
+        return;
+      }
   
-  //     const userId = response.user._id;
-  //     setAuthenticatedUserId(userId);
-  //     socketInstance.emit('join', userId);
-  //   });
+      const userId = response.user._id;
+      setAuthenticatedUserId(userId);
+      socketInstance.emit('join', userId);
+    });
   
-  //   // Check if socketInstance is initialized before calling .on
-  //   if (socketInstance) {
-  //     socketInstance.on("unreadMessagesCount", (count) => {
-  //       setUnreadMessagesCount(count);
-  //     });
-  //   }
+    // Check if socketInstance is initialized before calling .on
+    if (socketInstance) {
+      socketInstance.on("unreadMessagesCount", (count) => {
+        setUnreadMessagesCount(count);
+      });
+    }
   
-  //   return () => {
-  //     if (socketInstance) {
-  //       socketInstance.disconnect();
-  //     }
-  //   };
-  // }, [token]);
+    return () => {
+      if (socketInstance) {
+        socketInstance.disconnect();
+      }
+    };
+  }, [token]);
   
-  // const LogOut = async (e) => {
-  //   e.preventDefault();
-  //   localStorage.clear();
-  //   window.location.href = "/";
-  // };
+  const LogOut = async (e) => {
+    e.preventDefault();
+    localStorage.clear();
+    window.location.href = "/";
+  };
 
 
   return (
@@ -80,14 +80,14 @@ export default function Sidebar() {
           </li>
         </Link>
         {/* booklist */}
-        <Link href="/host/profile">
+        <Link href="/admin/host-list">
           <li className="flex items-center gap-x-2 px-4 py-3 hover:bg-white font-medium hover:font-semibold hover:text-secondary-400 rounded-lg">
             {/* <Icon name="user-cog" className="icon" /> */}
             <UserRoundCheck className="icon" size={24}/>
             <span className="hidden xl:block">Property Owners</span>
           </li>
         </Link>
-        <Link href="/host/pending">
+        <Link href="/admin/userlist">
           <li className="flex items-center gap-x-2 px-4 py-3 hover:bg-white font-medium hover:font-semibold hover:text-secondary-400 rounded-lg">
             {/* <Icon name="user-cog" className="icon" /> */}
             <Users className="icon" size={24} />
@@ -95,13 +95,13 @@ export default function Sidebar() {
           </li>
         </Link>
         {/* Unread Messages */}
-        <Link href="/host/messages">
+        <Link href="/admin/messages">
           <li className="flex items-center gap-x-2 px-4 py-3 hover:bg-white font-medium hover:font-semibold hover:text-secondary-400 rounded-lg">
             <Mail className="icon" size={24}/>
             <span className="hidden xl:block">Message ({unreadMessagesCount})</span>
           </li>
         </Link>
-        <Link href="/host/properties">
+        <Link href="/host/transactions">
           <li className="flex items-center gap-x-2 px-4 py-3 hover:bg-white font-medium hover:font-semibold hover:text-secondary-400 rounded-lg">
             {/* <Icon name="arrow-right-left" className="icon" /> */}
             <ArrowLeftRight className="icon" size={24}/>
@@ -109,7 +109,7 @@ export default function Sidebar() {
           </li>
         </Link>
 
-        <Link href="/">
+        <Link href="/admin/order-history">
           <li className="flex items-center gap-x-2 px-4 py-3 hover:bg-white font-medium hover:font-semibold hover:text-secondary-400 rounded-lg">
             <History className="icon" size={24}/>
             <span className="hidden xl:block">Order History</span>
@@ -121,10 +121,10 @@ export default function Sidebar() {
           <span className="hidden xl:block">Setting</span>
         </li>
 
-        <li className="flex items-center gap-x-2 px-4 py-3 hover:bg-white font-medium hover:font-semibold hover:text-secondary-400 rounded-lg">
+        {/* <li className="flex items-center gap-x-2 px-4 py-3 hover:bg-white font-medium hover:font-semibold hover:text-secondary-400 rounded-lg">
           <Icon name="history" className="icon" />
           <span className="hidden xl:block">Support</span>
-        </li>
+        </li> */}
       </ul>
 
       <span className="rounded-lg ml-auto mr-auto bg-white bg-opacity-20 h-fit w-full text-center py-4">
@@ -132,8 +132,8 @@ export default function Sidebar() {
       </span>
 
       <button className="mb-16 px-4 py-0 rounded-lg ml-auto mr-auto" 
-            // onClick={LogOut}
-            >
+             onClick={LogOut}
+             >
         <Icon name="log-out" className="icon text-white inline mr-2.5" />
         <span>Log out</span>
       </button>

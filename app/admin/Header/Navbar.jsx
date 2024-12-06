@@ -3,19 +3,21 @@ import { Menu, X } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { useState,useEffect } from "react"
-// import { useSelector } from "react-redux"
+import { useSelector } from "react-redux"
+import { useRouter } from "next/navigation"
 
 export default function Navbar() {
     const [loggedIn, setLoggedIn] = useState(true)
     const [open, setOpen] = useState(false)
     const [subMenuOpen, setSubMenuOpen] = useState(false)
-    // const { user,token } = useSelector((state) => state.auth);
+    const { user,token } = useSelector((state) => state.auth);
     // console.log(user)
-    // useEffect(() => {
-    //     if (!user || user.role !== "host") {
-    //       return
-    //       }
-    //   }, [user, token])
+    const router=useRouter();
+    useEffect(() => {
+        if (!user || user.role !== "host") {
+            router.push("/login/email")
+        }
+      }, [user, token,router])
   return (
     <div className="relative">
     {
@@ -28,9 +30,9 @@ export default function Navbar() {
         loggedIn
             ?   <>
                     <li className="w-max min-w-full md:min-w-max py-4 px-10 md:p-0 " onClick={()=> setSubMenuOpen(val=> !val)}>
-                          {/* {user && user.profilePic?Image(
+                          {user && user.profilePic?Image(
                             <Image alt='User image' className=' ml-auto mr-auto border-primary-400 padding-0 min-w-12 min-h-12 rounded-full drop-shadow drop-shadow-md shadow-primary-400' 
-                            src={user.profilePic.url} 
+                            src={user?.profilePic.url} 
                             height={48} 
                             width={48}/>
                           ):(
@@ -38,7 +40,7 @@ export default function Navbar() {
                             src={'/dummy/sample-profile-photo.jpg'} 
                             height={48} 
                             width={48}/>
-                          )} */}
+                          )}
                         <Image alt='User image' className=' ml-auto mr-auto border-primary-400 padding-0 min-w-12 min-h-12 rounded-full drop-shadow drop-shadow-md shadow-primary-400' 
                             src={'/dummy/sample-profile-photo.jpg'} 
                             height={48} 
@@ -50,12 +52,12 @@ export default function Navbar() {
                        </Link>
                     </li> */}
             
-                    <li className="w-max min-w-full md:min-w-max py-4 md:p-0 px-10 font-medium text-neutral-500 cursor-pointer hover:shadow hover:shadow-neutral-600-inner hover:font-bold md:hover:shadow-none">
+                    {/* <li className="w-max min-w-full md:min-w-max py-4 md:p-0 px-10 font-medium text-neutral-500 cursor-pointer hover:shadow hover:shadow-neutral-600-inner hover:font-bold md:hover:shadow-none">
                         Admin: 
                         <span className="inline-block max-w-full text-center text-secondary-400 ">
                         Sample Name
                         </span>
-                    </li>
+                    </li> */}
                 </>
 
             :

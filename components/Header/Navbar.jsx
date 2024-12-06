@@ -27,54 +27,59 @@ export default function Navbar() {
             setLoggedIn(false);
             setProfile('/dummy/sample-profile-photo.jpg')
         }
+        if (user && user.role !== "admin") {
+           return("/login/email")
+        }else{
+            router.push("/admin")
+        }
     }, [user, token]);
 
-    const changeRule = async (e) => {
-        e.preventDefault();
+    // const changeRule = async (e) => {
+    //     e.preventDefault();
 
-        if (user && user.role === "host") {
-            router.push("/host/");
-        } else {
-            try {
-                const response = await axiosInstance.put("/change-role");
+    //     if (user && user.role === "admin") {
+    //         router.push("/host/");
+    //     } else {
+    //         try {
+    //             const response = await axiosInstance.put("/change-role");
 
-                if (response.data) {
-                    const updatedUser = response.data.user; // Assuming `response.data.user` contains the updated user info
-                    localStorage.setItem("user", JSON.stringify(updatedUser)); // Store the updated user in localStorage
+    //             if (response.data) {
+    //                 const updatedUser = response.data.user; // Assuming `response.data.user` contains the updated user info
+    //                 localStorage.setItem("user", JSON.stringify(updatedUser)); // Store the updated user in localStorage
 
-                    // // Optionally, update local `user` state if needed
-                    // setUser(updatedUser);
-                    window.location.href = "/host/profile";
-                    // router.push("/host/profile")
-                }
-            } catch (error) {
-                console.error("Error updating role:", error);
-            }
-        }
-    };
-    const changeRuleAsUser = async (e) => {
-        e.preventDefault();
+    //                 // // Optionally, update local `user` state if needed
+    //                 // setUser(updatedUser);
+    //                 window.location.href = "/host/profile";
+    //                 // router.push("/host/profile")
+    //             }
+    //         } catch (error) {
+    //             console.error("Error updating role:", error);
+    //         }
+    //     }
+    // };
+    // const changeRuleAsUser = async (e) => {
+    //     e.preventDefault();
 
-        if (user && user.role === "host") {
-            router.push("/host/");
-        } else {
-            try {
-                const response = await axiosInstance.put("/change-role");
+    //     if (user && user.role === "host") {
+    //         router.push("/host/");
+    //     } else {
+    //         try {
+    //             const response = await axiosInstance.put("/change-role");
 
-                if (response.data) {
-                    const updatedUser = response.data.user; // Assuming `response.data.user` contains the updated user info
-                    localStorage.setItem("user", JSON.stringify(updatedUser)); // Store the updated user in localStorage
+    //             if (response.data) {
+    //                 const updatedUser = response.data.user; // Assuming `response.data.user` contains the updated user info
+    //                 localStorage.setItem("user", JSON.stringify(updatedUser)); // Store the updated user in localStorage
 
-                    // // Optionally, update local `user` state if needed
-                    // setUser(updatedUser);
-                    window.location.href = "/host/profile";
-                    // router.push("/host/profile")
-                }
-            } catch (error) {
-                console.error("Error updating role:", error);
-            }
-        }
-    };
+    //                 // // Optionally, update local `user` state if needed
+    //                 // setUser(updatedUser);
+    //                 window.location.href = "/host/profile";
+    //                 // router.push("/host/profile")
+    //             }
+    //         } catch (error) {
+    //             console.error("Error updating role:", error);
+    //         }
+    //     }
+    // };
     const LogOut = async (e) => {
         e.preventDefault();
         localStorage.clear();

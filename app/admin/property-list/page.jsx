@@ -359,9 +359,9 @@ const fetchPropertyList = async () => {
 ) : lists.length > 0 ? (
   lists.map((property, index) => (
     <ul  key={property._id || index}  className='admin-property-list-table-item even:bg-white odd:bg-transparent marker-class'>
-                            <li className='pl-6 text-secondary-400 hover:underline cursor-pointer'>45336</li>
-                            <li className='pl-6'>Property A <span className='text-secondary-400 hover:underline cursor-pointer'>(45336)</span></li>
-                            <li className='pl-6 text-center'>Chattogram</li>
+                            <li className='pl-6 text-secondary-400 hover:underline cursor-pointer'>{property.Postedby?.name || property.Postedby?.fname|| property.Postedby._id}</li>
+                            <li className='pl-6'>{property.propertyTitle} <span className='text-secondary-400 hover:underline cursor-pointer'>({property._id})</span></li>
+                            <li className='pl-6 text-center'>{property.location?.district}</li>
                             <li className='pl-6 text-center'>23/13,230</li>
                             <li className='pl-6 text-center'>
                                 <button className="rounded-lg mx-auto bg-[#E7EDFF] p-2 ">
@@ -370,7 +370,7 @@ const fetchPropertyList = async () => {
                             </li>
                             <li className='pl-6 text-center flex items-center justify-center gap-6'>
                                 <div className="py-2  px-2 rounded-lg bg-neutral-50">
-                                    <ToggleButton/> test
+                                    <ToggleButton id={property._id}/>
                                 </div>
                                 <button className="py-2  px-2 rounded-lg bg-[#F7E1E1]">
                                     <Trash2 className="icon text-[#FF4D4D]" size={24}/>
