@@ -90,7 +90,7 @@ const formatDateCount = (startDateStr, endDateStr) => {
               ) : bookings.length > 0 ? (
                 bookings.map((booking, index) => (
                  
-                  <ul key={user._id || index} className='text-base text-neutral-400 font-medium grid grid-cols-[178px_250px_300px_100px_200px] place-items-center bg-white rounded-lg py-3   '>
+                  <ul key={booking._id || index} className='text-base text-neutral-400 font-medium grid grid-cols-[178px_250px_300px_100px_200px] place-items-center bg-white rounded-lg py-3   '>
                   <li>{formatDate(booking.updatedAt)}</li>
 
                         <li>{booking.property} <span className='text-secondary-400 hover:underline cursor-pointer'>45336</span></li>
