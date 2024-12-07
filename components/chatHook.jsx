@@ -19,7 +19,22 @@ const ChatComponentHooks = ({ userId, otherUserId, socket, loadingMessages ,setL
     
         return () => setMessages([]);
     }, [userId, otherUserId, socket]);
+    const formatDateWithTime = (dateStr) => {
+        const date = new Date(dateStr);
     
+        // Format the time
+        const hours = date.getUTCHours();
+        const minutes = date.getUTCMinutes();
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        const formattedHours = hours % 12 || 12; // Convert to 12-hour format
+        const formattedMinutes = String(minutes).padStart(2, '0');
+    
+        // Combine the date and time
+        return `${date.getUTCFullYear()}/${String(date.getUTCMonth() + 1).padStart(
+            2,
+            "0"
+        )}/${String(date.getUTCDate()).padStart(2, "0")} ${formattedHours}:${formattedMinutes} ${ampm}`;
+    };
     return (
        
 
@@ -38,11 +53,9 @@ const ChatComponentHooks = ({ userId, otherUserId, socket, loadingMessages ,setL
                         font-medium shadow-inner text-base">
                             <p>{msg.sender}</p>
                             <p><strong>Message:</strong> {msg.message}</p>
-                            <span className="absolute top-[calc(100%+4px)] text-sm">Sent 4:23pm</span>
+                            <span className="absolute top-[calc(100%+4px)] text-sm">Sent {formatDate(msg.timestamp)}</span>
                         </div>
                     </>
-
-                   
                 ))
             ) : (
                 <p>No messages to display.</p>
@@ -50,9 +63,6 @@ const ChatComponentHooks = ({ userId, otherUserId, socket, loadingMessages ,setL
         </div>
     );
 };
-
-
-
 
 export default ChatComponentHooks;
 

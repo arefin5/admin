@@ -106,9 +106,11 @@ return(<>
                 </div>
                 <div className="h-full py-1">
                     <h4 className="text-lg font-semibold leading-5">
-                    {getUsernameFromEmail(conv.userDetails.email)}:{" "}
-                    {conv.lastMessage}
+                    {getUsernameFromEmail(conv.userDetails.email)}:{" "} 
+
+                   
                     </h4>
+                    <p> {conv.lastMessage}</p>
                     <p className="text-neutral-400 text-sm leading-5">Booking Request</p>
                 </div>
                 <div className="absolute right-4 top-4 text-xs font-medium">3:23pm</div>
