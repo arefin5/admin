@@ -7,7 +7,7 @@ import { SquareArrowDownRight, Trash2 } from "lucide-react"
 export default function page() {
         const [bookings, setBooking] = useState([]);
 const [loading, setLoading] = useState(false);
-
+const [totalmoney,setTotal]=useState(0)
 useEffect(() => {
   fetchPropertyList();
 }, []);
@@ -17,7 +17,10 @@ const fetchPropertyList = async () => {
     setLoading(true);
     const response = await axiosInstance.get("/admin/book-list"); 
     setBooking(response.data?.booking || []); 
-    console.log(response.data?.booking)
+    // console.log(response.data?.booking);
+     // Calculate total price
+     const totalAmount = fetchedBookings.reduce((sum, booking) => sum + parseFloat(booking.price || 0), 0);
+     setTotal(totalAmount); // Set the total amount
   } catch (error) {
     console.error("Failed to fetch property list:", error);
   } finally {
@@ -67,7 +70,7 @@ const formatDateCount = (startDateStr, endDateStr) => {
             <div className="flex items-center gap-4">
               {/* <p className="w-max text-sm text-neutral-400 font-medium">Available Balance:  <span className="text-neutral-700 text-lg font-semibold">1,500.00</span></p> */}
               <p className="w-max text-sm text-neutral-400 font-medium flex items-center whitespace-nowrap">
-                Available Balance: <span className="text-neutral-700 text-lg font-semibold ml-1">1,500.00</span>
+                Available Balance: <span className="text-neutral-700 text-lg font-semibold ml-1">{totalmoney}</span>
               </p>
               <button className="btn btn-primary max-w-[180px] px-8 w-max whitespace-nowrap">Withdraw Now</button>
             </div>
@@ -93,7 +96,7 @@ const formatDateCount = (startDateStr, endDateStr) => {
                   <ul key={booking._id || index} className='text-base text-neutral-400 font-medium grid grid-cols-[178px_250px_300px_100px_200px] place-items-center bg-white rounded-lg py-3   '>
                   <li>{formatDate(booking.updatedAt)}</li>
 
-                        <li>{booking.property} <span className='text-secondary-400 hover:underline cursor-pointer'>45336</span></li>
+                        <li>{booking.property}</li>
                         <li>
                         {formatDate(booking.checkinDate, booking.checkoutDate)} </li>
                         <li className="text-[#FF5A26]">{booking.price}</li>

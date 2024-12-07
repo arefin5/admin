@@ -32,10 +32,8 @@ const page = () => {
           {/* <h3 className='text-neutral-600 text-2xl font-semibold'>User List</h3> */}
           <div className='text-neutral-400 text-base font-medium font-medium'>
             <ul className='grid grid-cols-[100px_230px_200px_170px_140px_160px] |  font-medium bg-white rounded-lg border border-neutral-200 py-2'>
-              <li className='pl-6'>Owner</li>
-              <li className='pl-6'>Property Name</li>
-              <li className='pl-6 text-center'>City</li>
-              <li className='pl-6 text-center'>Revenue</li>
+              <li className='pl-6'>name</li>
+              <li className='pl-6'>email/phone</li>
               <li className='pl-6 text-center'>Files</li>
               <li className='pl-6 text-center'>Action</li>
             </ul>
@@ -51,7 +49,11 @@ const page = () => {
                       {user?.name || user?.fname || user._id}
                     </li>
                     <li className='pl-6'>{user?.email || user?.phone}</li>
-
+                    <li className='pl-6 text-center'>
+                                <button className="rounded-lg mx-auto bg-[#E7EDFF] p-2 ">
+                                    <SquareArrowDownRight className="icon text-[#45B500]" size={24}/>
+                                </button>
+                            </li>
                     <li className='pl-6 text-center flex items-center justify-center gap-6'>
                       <div className="py-2  px-2 rounded-lg bg-neutral-50">
                         <ToggleButton id={user._id} />

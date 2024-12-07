@@ -109,26 +109,6 @@ const fetchPropertyList = async () => {
   <p>No properties found.</p>
 )}
 
-
-                        {/* <ul className='admin-property-list-table-item even:bg-white odd:bg-transparent'>
-                            <li className='pl-6 text-secondary-400 hover:underline cursor-pointer'>45336</li>
-                            <li className='pl-6'>Property A <span className='text-secondary-400 hover:underline cursor-pointer'>(45336)</span></li>
-                            <li className='pl-6 text-center'>Chattogram</li>
-                            <li className='pl-6 text-center'>23/13,230</li>
-                            <li className='pl-6 text-center'>
-                                <button className="rounded-lg mx-auto bg-[#E7EDFF] p-2 ">
-                                    <SquareArrowDownRight className="icon text-[#45B500]" size={24}/>
-                                </button>
-                            </li>
-                            <li className='pl-6 text-center flex items-center justify-center gap-6'>
-                                <div className="py-2  px-2 rounded-lg bg-neutral-50">
-                                    <ToggleButton/> test
-                                </div>
-                                <button className="py-2  px-2 rounded-lg bg-[#F7E1E1]">
-                                    <Trash2 className="icon text-[#FF4D4D]" size={24}/>
-                                </button>
-                            </li>
-                        </ul> */}
                     </div>
                 </div>
             </div>

@@ -63,7 +63,7 @@ export default function Page() {
     };
 
     const selectConversation = (contact) => {
-        console.log(contact)
+        // console.log(contact)
 
         setSelectedUser(contact);
         setLoadingMessages(true); // Loading state
