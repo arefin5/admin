@@ -16,13 +16,13 @@ const page = () => {
   const fetchPropertyList = async () => {
     try {
       setLoading(true);
-      const response = await axiosInstance.get("/admin/all-user"); // Await the API call
-      setUser(response.data?.users || []); // Handle cases where `list` is undefined
+      const response = await axiosInstance.get("/admin/all-user");
+      setUser(response.data?.users || []); 
       console.log(response.data?.users)
     } catch (error) {
       console.error("Failed to fetch property list:", error);
     } finally {
-      setLoading(false); // Ensure loading state is reset
+      setLoading(false); 
     }
   };
   return (
@@ -46,7 +46,7 @@ const page = () => {
                   <ul key={user._id || index}
                     className='admin-property-list-table-item even:bg-white odd:bg-transparent marker-class'>
                     <li className='pl-6 text-secondary-400 hover:underline cursor-pointer'>
-                      {user?.name || user?.fname || user._id}
+                      {user?.name || user?.fname || " "}
                     </li>
                     <li className='pl-6'>{user?.email || user?.phone}</li>
                     <li className='pl-6 text-center'>

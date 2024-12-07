@@ -19,8 +19,12 @@ const fetchPropertyList = async () => {
     setBooking(response.data?.booking || []); 
     // console.log(response.data?.booking);
      // Calculate total price
-     const totalAmount = fetchedBookings.reduce((sum, booking) => sum + parseFloat(booking.price || 0), 0);
-     setTotal(totalAmount); // Set the total amount
+     const totalAmount = fetchedBookings.reduce((sum, booking) => {
+      const price = parseFloat(booking.price);
+      return sum + (isNaN(price) ? 0 : price); // Add only if price is a valid number
+    }, 0);
+    setTotal(totalAmount);
+    //  const totalAmount = fetchedBookings.reduce((sum, booking) => sum + parseFloat(booking.price || 0), 0);
   } catch (error) {
     console.error("Failed to fetch property list:", error);
   } finally {
