@@ -66,7 +66,7 @@ export default function Sidebar() {
         <li className="hidden">
           <Icon name="circle-chevron-right" className="icon" />
         </li>
-        <Link href="/host">
+        <Link href="/admin">
           <li className="flex items-center gap-x-2 px-4 py-3 hover:bg-white font-medium hover:font-semibold hover:text-secondary-400 rounded-lg">
             {/* <Icon name="layout-dashboard" className="icon" /> */}
             <LayoutDashboard className="icon" size={24}/>
