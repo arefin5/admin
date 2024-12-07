@@ -8,7 +8,7 @@ import Image from "next/image"
 import { Send } from "lucide-react"
 
 // const socket = io("http://145.223.22.239:5001", { autoConnect: false });
-// // const socket = io("http://localhost:5001", { autoConnect: false });
+// const socket = io("http://localhost:5001", { autoConnect: false });
 
 // // Page Component
 // export default function Page() {
@@ -131,6 +131,7 @@ export default function Page() {
     const fetchConversations = (userId) => {
         socket.emit("getConversations", userId, (response) => {
             if (response.status === "success") {
+                console.log(response.conversations)
                 setConversations(response.conversations);
                 setShowChatBox(true);
             } else {
@@ -140,6 +141,8 @@ export default function Page() {
     };
 
     const selectConversation = (contact) => {
+        console.log(contact)
+
         setSelectedUser(contact);
         setLoadingMessages(true); // Loading state
     };
@@ -172,8 +175,8 @@ return(<>
         <div className='px-6 py-10 bg-secondary-50 h-[calc(100vh-80px)] rounded-lg w-full max-w-[376px] space-y-1'>
             
         {conversations.map((conv) => (
-            conv && conv._id ? (
-                <div   key={conv._id}
+            conv  ? (
+                <div   key={conv.length}
                                 onClick={() => selectConversation(conv)}
                              className='select-none cursor-pointer rounded-md w-full px-4 py-2 flex gap-4 text-neutral-500 relative hover:shadow-sm hover:bg-white hover:drop-shadow-sm'>
                 <div className='relative w-[48px] h-[48px] rounded-full overflow-hidden'>
@@ -191,7 +194,7 @@ return(<>
                     <span className="absolute-center">2</span>
                     </div>
             </div>
-            ) : null
+            ) : <>you Have No messages</>
            
                            
                         ))}
@@ -200,45 +203,15 @@ return(<>
 
            
         </div>
-        {selectedUser && selectedUser._id (
+        {selectedUser  &&(
                    <>
-                   <div className="w-full bg-secondary-50 rounded-lg px-8 py-10">
-                        {/* Chat Box */}
-                        <div className="p-4 border-b">
-                            <h3 className="font-medium">{selectedUser._id}</h3>
-                        </div>
-
-                        <div className="px-4 py-4 h-[268px] overflow-y-auto">
-                            <ChatComponentHooks
-                                userId={user}
-                                otherUserId={selectedUser.userId}
-                                socket={socket}
-                                loadingMessages={loadingMessages}
-                                setLoadingMessages={setLoadingMessages}
-                            />
-                        </div>
-
-                        <div className="px-4 py-2 border-t">
-                            {/* Input Box for New Message */}
-                            <textarea
-                                className="w-full bg-neutral-100 rounded-lg px-3 py-2 focus:outline-none"
-                                rows="3"
-                                value={newMessage}
-                                onChange={(e) => setNewMessage(e.target.value)}
-                            />
-                            <button
-                                onClick={handleSendMessage}
-                                className="text-primary-500 hover:text-primary-700"
-                            >
-                                <SendHorizonal size={24} />
-                            </button>
-                        </div>
-                    </div>
+               
                     <div className='w-full bg-secondary-50 rounded-lg px-8 py-10'>
             
             <div className="h-[calc(100%-96px)]">
                 <h3 className="text-neutral-500 text-base font-normal">
-                To: <span className="text-neutral-700 text-lg font-medium    ">{selectedUser._id}</span></h3>
+                To: <span className="text-neutral-700 text-lg font-medium    ">{selectedUser._id}</span>
+                </h3>
                 
                 {/* message list  */}
                 <div className="gird space-y-8 content-end h-[calc(100%-48px)]">
@@ -260,11 +233,14 @@ return(<>
                     class="bg-transparent shadow-none w-full border-none p-4 border border-gray-300 rounded-lg shadow-sm focus:ring-0 focus:border-gray-300 focus:outline-none active:outline-none"
                     rows="2"
                     placeholder="Enter your text here..."
+                    value={newMessage}
+                    onChange={(e) => setNewMessage(e.target.value)}
                     />
-                    <button className="p-3 h-fit my-auto rounded-full bg-secondary-400">
+                    <button className="p-3 h-fit my-auto rounded-full bg-secondary-400"
+                     onClick={handleSendMessage}>
                         <Send className="icon text-white "/>
                     </button>
-                    <textarea
+                    {/* <textarea
                                 className="w-full bg-neutral-100 rounded-lg px-3 py-2 focus:outline-none"
                                 rows="3"
                                 value={newMessage}
@@ -275,7 +251,7 @@ return(<>
                                 className="text-primary-500 hover:text-primary-700"
                             >
                               <Send className="icon text-white "/>
-                            </button>
+                            </button> */}
                 </div>
             </div>
             <div>
