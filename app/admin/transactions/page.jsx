@@ -17,10 +17,19 @@ const fetchPropertyList = async () => {
   try {
     setLoading(true);
     const response = await axiosInstance.get("/admin/book-list"); 
-    setBooking(response.data?.booking || []); 
+    // setBooking(response.data?.booking || []); 
     // console.log(response.data?.booking);
      // Calculate total price
-     
+     const fetchedBookings = response.data?.booking || [];
+     setBooking(fetchedBookings);
+
+     // Calculate total price after fetching bookings
+     const totalAmount = fetchedBookings.reduce((sum, booking) => {
+       const price = parseFloat(booking.price);
+       return sum + (isNaN(price) ? 0 : price);
+     }, 0);
+
+     setTotal(totalAmount);
     //  const totalAmount = fetchedBookings.reduce((sum, booking) => sum + parseFloat(booking.price || 0), 0);
   } catch (error) {
     console.error("Failed to fetch property list:", error);
@@ -28,11 +37,6 @@ const fetchPropertyList = async () => {
     setLoading(false); // Ensure loading state is reset
   }
 };
-const totalAmount = fetchedBookings.reduce((sum, booking) => {
-  const price = parseFloat(booking.price);
-  return sum + (isNaN(price) ? 0 : price); // Add only if price is a valid number
-}, 0);
-setTotal(totalAmount);
 const formatDate = (dateStr) => {
     const date = new Date(dateStr);
     return `${date.getUTCFullYear()}/${String(date.getUTCMonth() + 1).padStart(
