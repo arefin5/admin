@@ -214,7 +214,8 @@ export default function Navbar() {
 
         if (user) {
             if (user.role !== "admin") {
-                router.push("/login/email")
+                router.push("/login/email");
+                localStorage.clear();
             } else {
                 router.push("/admin")
             }
