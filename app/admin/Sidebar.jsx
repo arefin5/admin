@@ -102,7 +102,7 @@ export default function Sidebar() {
             <span className="hidden xl:block">Message ({unreadMessagesCount})</span>
           </li>
         </Link>
-        <Link href="/host/transactions">
+        <Link href="/admin/transactions">
           <li className="flex items-center gap-x-2 px-4 py-3 hover:bg-white font-medium hover:font-semibold hover:text-secondary-400 rounded-lg">
             {/* <Icon name="arrow-right-left" className="icon" /> */}
             <ArrowLeftRight className="icon" size={24}/>
