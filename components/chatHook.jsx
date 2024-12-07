@@ -53,7 +53,7 @@ const ChatComponentHooks = ({ userId, otherUserId, socket, loadingMessages ,setL
                         font-medium shadow-inner text-base">
                             <p>{msg.sender}</p>
                             <p><strong>Message:</strong> {msg.message}</p>
-                            <span className="absolute top-[calc(100%+4px)] text-sm">Sent {formatDate(msg.timestamp)}</span>
+                            <span className="absolute top-[calc(100%+4px)] text-sm">Sent {formatDateWithTime(msg.timestamp)}</span>
                         </div>
                     </>
                 ))
