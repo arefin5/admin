@@ -7,8 +7,7 @@ import ChatComponentHooks from "@/components/chatHook";
 import Image from "next/image"
 import { Send } from "lucide-react"
 
-const socket = io("http://145.223.22.239:5001", { autoConnect: false });
-// const socket = io("http://localhost:5001", { autoConnect: false });
+const socket = io("https://backend.bedbd.com", { autoConnect: false });
 
 // Page Component
 export default function Page() {
